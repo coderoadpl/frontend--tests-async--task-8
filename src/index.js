@@ -1,1 +1,7 @@
-console.log('Hello CodeRoad!')
+import { start } from './start'
+
+const log = () => {
+    console.log('Hello CodeRoad!')
+}
+
+start(log)
