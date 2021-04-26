@@ -1,14 +1,17 @@
 import { start } from './start'
 
-it('should call callback function in 3 seconds', (done) => {
+jest.useFakeTimers('modern')
+
+it('should call callback function in 3 seconds', () => {
     expect.assertions(2)
     
-    const callback = jest.fn(() => {
-        expect(callback).toHaveBeenCalledTimes(1)
-        done()
-    })
+    const callback = jest.fn()
 
     start(callback)
-
+    
     expect(callback).toHaveBeenCalledTimes(0)
+
+    jest.runAllTimers()
+
+    expect(callback).toHaveBeenCalledTimes(1)
 })
